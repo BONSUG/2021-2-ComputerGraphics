@@ -97,8 +97,8 @@ def HarrisDetector(src, gaus_filter_size = 3, gaus_sigma = 1, alpha = 0.04, thre
     #0 ~ 1 사이의 값으로 변경 후 0 ~ 255로 변경 -> 결과가 잘 나왔는지 확인하기위해서
     dst_x_Norm = ((Ix - np.min(Ix) )/np.max(Ix - np.min(Ix)) * 255 + 0.5).astype(np.uint8)
     dst_y_Norm = ((Iy - np.min(Iy) )/np.max(Iy - np.min(Iy)) * 255 + 0.5).astype(np.uint8)
-    cv2.imshow('201904237 - dst_x_Norm', dst_x_Norm)
-    cv2.imshow('201904237 - dst_y_Norm', dst_y_Norm)
+    cv2.imshow(' - dst_x_Norm', dst_x_Norm)
+    cv2.imshow(' - dst_y_Norm', dst_y_Norm)
     cv2.waitKey()
     cv2.destroyWindow('dst_x_Norm')
     cv2.destroyWindow('dst_y_Norm')
@@ -117,10 +117,10 @@ def HarrisDetector(src, gaus_filter_size = 3, gaus_sigma = 1, alpha = 0.04, thre
 
     #0 ~ 1 사이의 값으로 변경 후 0 ~ 255로 변경 -> 결과가 잘 나왔는지 확인하기위해서
     dst_IxIy_Norm = ((IxIy - np.min(IxIy) )/np.max(IxIy - np.min(IxIy)) * 255 + 0.5).astype(np.uint8)
-    cv2.imshow('201904237 - IxIx', IxIx)
-    cv2.imshow('201904237 - IyIy', IyIy)
+    cv2.imshow('- IxIx', IxIx)
+    cv2.imshow('- IyIy', IyIy)
     #cv2.imshow('IxIy', IxIy)
-    cv2.imshow('201904237 - dst_IxIy_Norm', dst_IxIy_Norm)
+    cv2.imshow('- dst_IxIy_Norm', dst_IxIy_Norm)
     cv2.waitKey()
     cv2.destroyWindow('IxIx')
     cv2.destroyWindow('IyIy')
@@ -142,10 +142,10 @@ def HarrisDetector(src, gaus_filter_size = 3, gaus_sigma = 1, alpha = 0.04, thre
 
     #0 ~ 1 사이의 값으로 변경 후 0 ~ 255로 변경 -> 결과가 잘 나왔는지 확인하기위해서
     G_dst_IxIy_Norm = ((G_IxIy - np.min(G_IxIy) )/np.max(G_IxIy - np.min(G_IxIy)) * 255 + 0.5).astype(np.uint8)
-    cv2.imshow('201904237 - G_IxIx', G_IxIx)
-    cv2.imshow('201904237 - G_IyIy', G_IyIy)
+    cv2.imshow(' - G_IxIx', G_IxIx)
+    cv2.imshow(' - G_IyIy', G_IyIy)
     #cv2.imshow('G_IxIy', G_IxIy)
-    cv2.imshow('201904237 - G_dst_IxIy_Norm', G_dst_IxIy_Norm)
+    cv2.imshow(' - G_dst_IxIy_Norm', G_dst_IxIy_Norm)
     cv2.waitKey()
     cv2.destroyWindow('G_IxIx')
     cv2.destroyWindow('G_IyIy')
@@ -161,14 +161,14 @@ def HarrisDetector(src, gaus_filter_size = 3, gaus_sigma = 1, alpha = 0.04, thre
 
     #0 ~ 1 사이의 값으로 변경 후 0 ~ 255로 변경 -> 결과가 잘 나왔는지 확인하기위해서
     G_dst_har_Norm = ((har - np.min(har) )/np.max(har - np.min(har)) * 255 + 0.5).astype(np.uint8)
-    cv2.imshow('201904237 - har before threshold', G_dst_har_Norm)
+    cv2.imshow('- har before threshold', G_dst_har_Norm)
 
     # thresholding
     har[har < threshold_rate * np.max(har)] = 0
 
     #0 ~ 1 사이의 값으로 변경 후 0 ~ 255로 변경 -> 결과가 잘 나왔는지 확인하기위해서
     G_dst_har_thresh_Norm = ((har - np.min(har) )/np.max(har - np.min(har)) * 255 + 0.5).astype(np.uint8)
-    cv2.imshow('201904237 - har after threshold', G_dst_har_thresh_Norm)
+    cv2.imshow('- har after threshold', G_dst_har_thresh_Norm)
 
     #주변에서 가장 큰 값만 남기고 나머지 지우기
     dst = find_local_maxima(har, 21)
@@ -179,15 +179,15 @@ def main():
     src = cv2.imread('zebra.png')
     harris_img = src.copy()
     gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY).astype(np.float32) / 255.
-    cv2.imshow('201904237 - original', src)
+    cv2.imshow(' - original', src)
 
     dst = HarrisDetector(gray, gaus_filter_size=3, gaus_sigma=1, alpha = 0.04)
     dst = cv2.dilate(dst, None)
     interest_points = np.zeros((dst.shape[0], dst.shape[1], 3))
     interest_points[dst != 0]=[0, 0, 255]
     harris_img[dst != 0]=[0, 0, 255]
-    cv2.imshow('201904237 - interest points', interest_points)
-    cv2.imshow('201904237 - harris_img', harris_img)
+    cv2.imshow(' - interest points', interest_points)
+    cv2.imshow(' - harris_img', harris_img)
     cv2.waitKey()
     cv2.destroyAllWindows()
 
