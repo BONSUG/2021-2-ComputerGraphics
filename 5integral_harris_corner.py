@@ -279,8 +279,8 @@ def main():
     print("src.shape : "+str(src.shape)) #실습자료 결과하면에 있으나 코드에는 없어서 추가했습니다.
     harris_img = harris_detector(src)
     harris_integral_img = harris_detector_integral(src)
-    cv2.imshow('harris_img ' + str(201904237) , harris_img)
-    cv2.imshow('harris_integral_img ' + str(201904237) , harris_integral_img)
+    cv2.imshow('harris_img ' + str() , harris_img)
+    cv2.imshow('harris_integral_img ' + str() , harris_integral_img)
     cv2.waitKey()
     cv2.destroyAllWindows()
 
