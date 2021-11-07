@@ -196,7 +196,7 @@ def main():
     result = cv2.drawMatches(src, kp1, src_rotation, kp2, matches[:20], outImg=None, flags=2)
     
     # 결과의 학번 작성하기!
-    cv2.imshow('my_sift 201904237', result)
+    cv2.imshow('my_sift', result)
     cv2.waitKey()
     cv2.destroyAllWindows()
     
