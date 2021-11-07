@@ -273,7 +273,7 @@ def main():
     src2 = cv2.imread('../LenaFaceShear.png')
     result_RANSAC = feature_matching_RANSAC_Gaussian(src, src2)
     cv2.imshow('input', src)
-    cv2.imshow('gaussian result  201904237', result_RANSAC)
+    cv2.imshow('gaussian result  ', result_RANSAC)
     cv2.imshow('goal', src2)
     cv2.waitKey()
     cv2.destroyAllWindows()
